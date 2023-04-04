@@ -3,6 +3,7 @@ import Admin_navbar from './Admin_navbar';
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from 'axios';
+import swal from "sweetalert";
 
 
 function Admin_list() {
@@ -12,15 +13,16 @@ function Admin_list() {
 
 
   useEffect(() => {
-    // let allProductList = JSON.parse(sessionStorage.getItem("user"));
+     let admin = JSON.parse(sessionStorage.getItem("user"));
 
-    axios.get("http://localhost:8080/user/admin/" + "ROLE_ADMIN")
+    axios.get("http://localhost:8080/user/admin/" + "ROLE_ADMIN" , { headers: { "Authorization": `Bearer ${admin.jwt}` } })
       .then(response => {
         console.log(response.data);
         setallCustomerList(response.data);
       })
       .catch(err => {
         console.log(err);
+        swal("Something went Wrong", "", "error");
       })
 
 

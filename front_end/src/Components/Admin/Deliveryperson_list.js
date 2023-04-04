@@ -3,23 +3,26 @@ import Admin_navbar from './Admin_navbar';
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from 'axios';
+import swal from "sweetalert";
 
 
 function Deliveryperson_list() {
+
 
   const [allDeliveryList, setallDeliveryList] = useState([]);
 
 
     useEffect(() => {
-      // let allProductList = JSON.parse(sessionStorage.getItem("user"));
+       let admin = JSON.parse(sessionStorage.getItem("user"));
 
-      axios.get("http://localhost:8080/user/admin/"+"ROLE_DELIVERYPERSON")
+      axios.get("http://localhost:8080/user/admin/"+"ROLE_DELIVERYPERSON" , { headers: { "Authorization": `Bearer ${admin.jwt}` } })
       .then(response =>{
           console.log(response.data);
           setallDeliveryList(response.data);       
       })
       .catch(err =>{
         console.log(err);
+        swal("Something went Wrong", "", "error");
       })
   
   

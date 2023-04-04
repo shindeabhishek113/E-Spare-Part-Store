@@ -25,7 +25,7 @@ import com.app.service.UserService;
 
 @RestController
 @RequestMapping("/user")
-@Transactional
+//@Transactional
 @CrossOrigin("http://localhost:3000/")
 public class UserController {
 
