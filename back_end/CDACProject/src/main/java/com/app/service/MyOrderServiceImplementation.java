@@ -161,7 +161,7 @@ public class MyOrderServiceImplementation implements MyOrderService {
              newCart.setDeliveryDate(LocalDate.now().plusDays(7));
 
              //hardcoring deliveryperson for testing...make sure to reset if deleted or working with new database.
-             User persistentDeliveryPerson= userRepo.findById((long) 8).get();
+             User persistentDeliveryPerson= userRepo.findById((long) 4).get();
              newCart.setDeliveryPerson(persistentDeliveryPerson);
 			return myOrderRepo.save(newCart); 
 		 }

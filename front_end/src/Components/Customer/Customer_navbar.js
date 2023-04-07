@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Dropdown from 'react-bootstrap/Dropdown';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 
 function Customer_navbar() {
@@ -35,6 +37,21 @@ function Customer_navbar() {
               </Dropdown.Menu>
             </Dropdown>
           </li>
+
+          {/* <li className="nav-item" >
+        
+
+          </li> */}
+
+          {/* <Form className="d-flex">
+            <Form.Control
+              type="search"
+              placeholder="Search"
+              className="me-2"
+              aria-label="Search"
+            />
+            <Button variant="outline-success">Search</Button>
+          </Form> */}
 
         </ul>
       </div>

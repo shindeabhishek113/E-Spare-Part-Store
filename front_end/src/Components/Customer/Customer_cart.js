@@ -11,11 +11,12 @@ function Customer_cart() {
 
   const [cart, setcart] = useState([]);
   const [payment, setpayment] = useState([]);
+  let customer = JSON.parse(sessionStorage.getItem("user"));
 
   useEffect(() => {
     let customer = JSON.parse(sessionStorage.getItem("user"));
     console.log("custid: " + customer.id)
-    axios.get("http://localhost:8080/myorder/cart/" + customer.id)
+    axios.get("http://localhost:8080/myorder/cart/" + customer.id , { headers: { "Authorization": `Bearer ${customer.jwt}` } })
       .then(response => {
         console.log(response.data);
         setcart(response.data);
@@ -34,7 +35,7 @@ function Customer_cart() {
     let cart = JSON.parse(sessionStorage.getItem("cart"));
     if (cart.orderPrice > 0) {
 
-      axios.put("http://localhost:8080/myorder/orderplace/" + cart.id)
+      axios.put("http://localhost:8080/myorder/orderplace/" + cart.id , { headers: { "Authorization": `Bearer ${customer.jwt}` } })
         .then(response => {
           console.log("this order place response: " + response.data)
 
@@ -55,7 +56,7 @@ function Customer_cart() {
 
           console.log("this is paymentObj: " + paymentObj);
 
-          axios.post("http://localhost:8080/payment", paymentObj)
+          axios.post("http://localhost:8080/payment", paymentObj , { headers: { "Authorization": `Bearer ${customer.jwt}` } })
             .then(response => {
               console.log(response.data);
               setpayment(response.data);

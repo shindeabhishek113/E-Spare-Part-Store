@@ -97,6 +97,15 @@ public class SupplierProductServiceImplentation implements SupplierProductsServi
 
 		return "SuplliedProducts Deletion Failed......";
 	}
+
+
+	@Override
+	public Optional<SupplierProducts> getSearchSupplierProductsDetails(int partNumber) {
+		// TODO Auto-generated method stub
+		Product product = productRepo.findByPartNumber(partNumber);
+		Long id = product.getId();
+		return supplierProductsRepo.findById(id);
+	}
 	
 	
 }//End of SupplierProductServiceImplentation

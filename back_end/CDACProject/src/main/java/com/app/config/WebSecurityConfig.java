@@ -55,6 +55,7 @@ public class WebSecurityConfig {
 		.antMatchers("/itemdetails/**").permitAll()
 		//.antMatchers("/user/**").permitAll()
 		.antMatchers("/user/admin/**").hasRole("ADMIN")
+		//.antMatchers("/Customer/**").hasRole("CUSTOMER")
 		.antMatchers("/myorder/**").permitAll()
 		.antMatchers("/products/purchase").hasRole("CUSTOMER")
 		.antMatchers("/products/view", "/auth/**", "/swagger*/**", "/v*/api-docs/**").permitAll() // enabling global

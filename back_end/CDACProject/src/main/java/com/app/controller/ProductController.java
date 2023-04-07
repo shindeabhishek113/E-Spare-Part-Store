@@ -41,6 +41,12 @@ public class ProductController {
 		return productService.getAllProductDetails();
 	}
 	
+//	@GetMapping("/search/{partNumber}")
+//	public Product getSearchProduct(@PathVariable int partNumber){
+//		
+//		return productService.getSearchProductDetails(partNumber);
+//	}
+	
 	
 	@GetMapping("/purchase")
 	public String purchaseProducts(Authentication auth) {
@@ -61,7 +67,8 @@ public class ProductController {
 	
 	
 	//INSERT
-	@PostMapping
+	
+	@PostMapping("/addproduct")
 	public Product addProduct(@RequestBody Product transientProduct)
 	{
 		return productService.addProductDetails(transientProduct);

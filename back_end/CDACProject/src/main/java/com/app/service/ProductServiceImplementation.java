@@ -50,11 +50,15 @@ public class ProductServiceImplementation implements ProductService {
 	@Override
 	public Product addProductDetails(Product transientProduct) {
 		
+	//	String categoryName = transientProduct.getProductCategory().getCategoryName();
+		
 		//getting categoryId 
 		Long categoryId= transientProduct.getProductCategory().getId();
 		
 		//getting persistent Category
 		Optional<Category> persistentCategory= categoryRepo.findById(categoryId);
+		
+		//Optional<Category> persistentCategory= categoryRepo.findByCategoryName(categoryName);
 		
 		//to avoid lazy initialization
 		persistentCategory.get().getCategoryName();
@@ -185,7 +189,13 @@ public class ProductServiceImplementation implements ProductService {
 	@Override
 	public List<Product> findByCategoryName(Category category) {
 		return productRepo.findByProductCategory(category);
-	}	
+	}
+
+//	@Override
+//	public Product getSearchProductDetails(int partNumber) {
+//		
+//		return productRepo.findByPartNumber( partNumber );
+//	}	
 	
 	
 }//End of ProductService

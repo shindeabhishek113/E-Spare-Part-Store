@@ -9,12 +9,13 @@ import swal from "sweetalert";
 function ProductList() {
 
     const [allProductList, setallProductList] = useState([]);
+    const [cart, setcart] = useState([]);
 
 
     useEffect(() => {
-      // let allProductList = JSON.parse(sessionStorage.getItem("user"));
+     let cust = JSON.parse(sessionStorage.getItem("user"));
 
-      axios.get("http://localhost:8080/supplierproducts")
+      axios.get("http://localhost:8080/supplierproducts" , { headers: { "Authorization": `Bearer ${cust.jwt}` } })
       .then(response =>{
           console.log(response.data);
           setallProductList(response.data); 
@@ -23,18 +24,36 @@ function ProductList() {
       })
       .catch(err =>{
         console.log(err);
+        swal("Something went Wrong", "", "error");
       })
   
+      //to load the cart
+      let customer = JSON.parse(sessionStorage.getItem("user"));
+      console.log("custid: " + customer.id)
+      axios.get("http://localhost:8080/myorder/cart/" + customer.id , { headers: { "Authorization": `Bearer ${customer.jwt}` } })
+        .then(response => {
+          console.log(response.data);
+          setcart(response.data);
+          sessionStorage.setItem("cart", JSON.stringify(response.data))
+  
+        })
+        .catch(err => {
+          console.log(err);
+        })
   
     },[]);
+
+    
 
 
     const addtocart = (c) => {
       let cart = JSON.parse(sessionStorage.getItem("cart"));
 
+      console.log("supplier prodect: "+c);
+
       const obj = {
         "quantity": 1, 
-        "price": 101, 
+        //"price": 101, 
         "myorder": cart, 
         "supplierProduct": c
 

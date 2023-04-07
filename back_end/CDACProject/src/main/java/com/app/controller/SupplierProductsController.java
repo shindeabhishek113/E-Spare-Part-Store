@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.entities.Product;
 import com.app.entities.SupplierProducts;
 import com.app.service.SupplierProductsService;
 
@@ -36,6 +37,13 @@ public class SupplierProductsController {
 	{
 		return supplierProductsService.getAllSupplierProductsDetails();
 	}
+	
+	@GetMapping("/search/{partNumber}")
+	public Optional<SupplierProducts> getSearchProduct(@PathVariable int partNumber){
+		
+		return supplierProductsService.getSearchSupplierProductsDetails(partNumber);
+	}
+	
 	
 	
 	//GET BY ID

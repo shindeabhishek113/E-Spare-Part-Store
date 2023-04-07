@@ -3,6 +3,7 @@ package com.app.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.app.entities.Product;
 import com.app.entities.SupplierProducts;
 
 public interface SupplierProductsService {
@@ -11,6 +12,9 @@ public interface SupplierProductsService {
 //********************* standard method declaration*****************************************************************
 	//GET ALL
 	public List<SupplierProducts> getAllSupplierProductsDetails();
+	
+	//GET BY SEARCH
+	public Optional<SupplierProducts> getSearchSupplierProductsDetails(int partNumber);
 	
 	//GET BY ID
 	public Optional<SupplierProducts> getSupplierProductsDetails(Long supplierProductsId);

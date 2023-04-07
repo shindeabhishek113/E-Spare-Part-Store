@@ -14,6 +14,9 @@ public interface ProductService {
 	//GET ALL
 	public List<Product> getAllProductDetails();
 	
+	//GET BY SEARCH
+	//public Product getSearchSupplierProductDetails(int partNumber);
+	
 	//GET BY ID
 	public Optional<Product> getProductDetails(Long productId);
 	
